@@ -39,9 +39,13 @@
       } else {
         var cs = getComputedStyle(el);
         var tr = cs['transition'];
-        var add_h_transition = tr.match(/max-(height[^,]+)/)[1];
-        if (el.style.transition.indexOf(add_h_transition) === -1) {
-          el.style.transition = tr + ', ' + add_h_transition;
+        var explicit_h = tr.match(/max-(height[^,]+)/);
+        if (explicit_h) {
+          // if a max-height transition isn't set, presumably it's an 'all' transition, which has height covered
+          var add_h_transition = explicit_h[1];
+          if (el.style.transition.indexOf(add_h_transition) === -1) {
+            el.style.transition = tr + ', ' + add_h_transition;
+          }
         }
         test_direction(el, cs['maxHeight']);
       }
