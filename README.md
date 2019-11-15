@@ -1,9 +1,13 @@
 # height-transition-polyfill
-A polyfill to get exact height transitions from zero to auto, when already using the max-height workaround
+A polyfill to get exact height transitions from zero to auto, when already using the max-height workaround.
 
 This gets rid of delays due to mismatch between max-height and actual height.
 
 See this answer for more information: https://stackoverflow.com/a/8331169/6691
+
+To enable, simply link to the `height-transition-polyfill.js` file or include it in your js packaging system; it will add monitoring to all transitions that happen on your document (and take action on `max-height` ones).  This is vanillajs; there are no dependencies on external libraries.
+
+---
 
 E.g. the following:
 
