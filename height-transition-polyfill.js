@@ -11,7 +11,7 @@
         requestAnimationFrame(self);
       } else {
         var tr = cs['transition'];
-        if (cs['maxHeight'] < starting_maxh) {
+        if (parseFloat(cs['maxHeight']) < parseFloat(starting_maxh)) {
           // shrinking
           if (el.style.height == '') {
             el.style.height = cs['height'];
