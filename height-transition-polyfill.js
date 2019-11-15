@@ -13,12 +13,12 @@
         var tr = cs['transition'];
         if (parseFloat(cs['maxHeight']) < parseFloat(starting_maxh)) {
           // shrinking
-          if (el.style.height == '') {
+          if (el.style.height == '' && parseInt(cs['height']) > 1) {
             el.style.height = cs['height'];
             void el.offsetWidth; // needed for transition to 'take'
           }
           el.setAttribute('height-locked', true);
-        } else {
+        } else if (el.scrollHeight > 1) {
           // growing
           el.setAttribute('height-locked', true);
           el.style.height = el.scrollHeight + 'px';
