@@ -56,7 +56,7 @@
     if (e.propertyName == 'height') {
       var el = e.target;
       var cs = getComputedStyle(el);
-      if (Math.abs(parseFloat(cs['height']) - parseFloat(el.style.height)) < 1) {
+      if (parseFloat(el.style.height) < parseFloat(cs['height']) + 1) {
         el.style.height = '';
         el.style.transition = '';
       }
