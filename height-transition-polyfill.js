@@ -4,7 +4,7 @@
   style.appendChild(document.createTextNode("[height-locked] { height: 0 !important;}"));
   document.head.appendChild(style);
 
-  function test_direction(el, starting_maxh) {
+  function test_direction(el, starting_maxh, starting_h) {
     var self = function() {
       var cs = getComputedStyle(el);
       if (cs['maxHeight'] == starting_maxh) {
@@ -14,7 +14,7 @@
         if (parseFloat(cs['maxHeight']) < parseFloat(starting_maxh)) {
           // shrinking
           if (el.style.height == '' && parseInt(cs['height']) > 1) {
-            el.style.height = cs['height'];
+            el.style.height = starting_h;
             void el.offsetWidth; // needed for transition to 'take'
           }
           el.setAttribute('height-locked', true);
@@ -47,7 +47,7 @@
             el.style.transition = tr + ', ' + add_h_transition;
           }
         }
-        test_direction(el, cs['maxHeight']);
+        test_direction(el, cs['maxHeight'], cs['height']);
       }
     }
   });
